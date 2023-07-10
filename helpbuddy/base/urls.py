@@ -4,5 +4,7 @@ from . import views # '.' გულისხმობს ამ ფაილი�
 
 urlpatterns = [
     path('', views.home, name='home'), #მიიღო 3 პარამეტრი, მისამართი, ლოკაცია, სახელი,
-    path('room/', views.room, name='room'),
+    path('room_page/<str:pk>/', views.room, name='room'),
+    #str - string
+    #pk - primary key
 ]

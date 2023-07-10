@@ -1,0 +1,1 @@
+this folder should be named after app, so it's called "base" as our app

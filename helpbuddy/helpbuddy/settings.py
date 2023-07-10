@@ -60,7 +60,11 @@ ROOT_URLCONF = 'helpbuddy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            #custom
+            #BASE_DIR ნიშნავს მთავარ დირექტორიას, ამ შემთხვევაში მთვარი helpbuddy
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

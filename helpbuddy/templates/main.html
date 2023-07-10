@@ -1,0 +1,21 @@
+<!-- ეს გვერდი არის შაბლონი ყველა დანარჩენი გვერდისათვის -->
+<!-- ყველა გვერდის დასაწყისში უნდა დაიწეროს ამ ფაილის მისამართი ( extends 'main.html' )-->
+<!-- ასევე ყველა ფაილში უნდა იყოს block content დასაწყისი და endblock დასასრული, -->
+<!-- {} და %% ში არ მაქვს ჩასმული block content, extends და ა.შ რადგან ამოაგდებს შეცდომას, როგორც ჩანს კომენტარშიც კი აღიქვამს -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help Buddy</title>
+    <!--custom-->
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <!-- ეს კომენტარი ჩანს source კოდში -->
+    {% block content %}
+    <!-- -->
+    {% endblock %}
+  </body>
+</html>
