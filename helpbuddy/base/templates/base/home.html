@@ -8,8 +8,11 @@
   <div>
     {% for room in rooms %}
     <div>
+      <span>@{{room.host.username}}</span>
       <h5>{{ room.id }} - <a href="{% url 'room' room.id %}">{{room.name}}</h5></a>
       <!--'room' aris urls.py-ში მისამართის სახელი, ეს სჯობს ვიდრე ფაილის მისამართი, რადგან გვერდს შეიძლება შევუცვალოთ სახელი (room_page) სამომავლოდ და აღარ მოგვიწევს ყველა ფაილში სათითაოდ დაკორექტირება-->
+      <small>{{room.topic.name}}</small>
+      <hr>
     </div>
     {% endfor %}
   </div>
