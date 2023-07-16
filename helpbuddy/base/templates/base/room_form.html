@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+<!--  -->
+{% block content %}
+
+<div>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <!-- csrf_token საჭიროა უსაფრთხოებისთვის Django-ში საჭიროა ყველა ფორმაში -->
+    {{form.as_p}} <!-- .as_p ყოველი ველს ჩასვამს <p> - პარაგრაფში  -->
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+{% endblock content %}

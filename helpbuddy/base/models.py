@@ -15,7 +15,6 @@ class Topic(models.Model):
 
 
 class Room(models.Model):
-    # from django.contrib.auth.models import User
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ForeignKey(
         Topic, on_delete=models.SET_NULL, null=True)  # Topic CLASS-ი
@@ -26,6 +25,9 @@ class Room(models.Model):
     updated = models.DateTimeField(auto_now=True)  # ინახავს დროს ყოველ ჯერზე
     # ინახავს დროს მხოლოდ მაშინ როდესაც შეიქმნა
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-updated', '-created'] # - ნიშნავს ascended order, ანუ ახალი პოსტი იქნება ბოლოში, - gareshe descended order
 
     def __str__(self):
         return self.name

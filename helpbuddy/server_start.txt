@@ -1,0 +1,4 @@
+first activate env:
+env\scripts\activate
+then:
+python manage.py runserver
