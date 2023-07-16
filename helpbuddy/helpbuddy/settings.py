@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
     #custom
     # 'base' # მიებმევა ჩვენი შექმნილი app-ი მაგრამ სჯობს დაზუსტებული მისამართი ანუ (შემდეგი ზოლი)
-    'base.apps.BaseConfig', #ანუ base app-ში apps.py-ში BaseConfig კლასი.
+    'base.apps.BaseConfig', # base app-ში apps.py-ში BaseConfig კლასი.
 ]
 
 MIDDLEWARE = [
