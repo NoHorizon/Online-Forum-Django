@@ -33,11 +33,13 @@
         <div>
           {% for room in rooms %}
           <div>
+            
             {% if request.user == room.host %}
             <!-- თუ იუზერისაა ეს ოთახები მაშინ გამოუჩნდეს ეს ღილაკები -->
             <a href="{% url 'update-room' room.id %}">Edit</a>
             <a href="{% url 'delete-room' room.id %}">Delete</a>
             {% endif %}
+
             <span>@{{room.host.username}}</span>
             <h5>{{ room.id }} - <a href="{% url 'room' room.id %}">{{room.name}}</h5></a>
             <!--'room' aris urls.py-ში მისამართის სახელი, ეს სჯობს ვიდრე ფაილის მისამართი, რადგან გვერდს შეიძლება შევუცვალოთ სახელი (room_page) სამომავლოდ და აღარ მოგვიწევს ყველა ფაილში სათითაოდ დაკორექტირება-->
