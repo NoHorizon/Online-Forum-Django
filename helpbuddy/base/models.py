@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 # custom
-from django.contrib.auth.models import User #მაგალითად ადმინი, სხვა იუზერი
+from django.contrib.auth.models import User  # მაგალითად ადმინი, სხვა იუზერი
 
 # მოდელის შექმნის მერე აუცილებელია მიგრაციის გაკეთება (python manage.py makemigrations და py manage.py migrate)
 
@@ -21,13 +21,15 @@ class Room(models.Model):
     name = models.CharField(max_length=200)
     # აქ null=True ნიშნავს, რომ ამ ველს შეუძლია იყოს ცარიელი და blank=True ანუ ფორმა შეიძლება იყოს ცარიელი
     description = models.TextField(null=True, blank=True)
-    # participants =
+    participants = models.ManyToManyField(
+        User, related_name='participants', blank=True)
     updated = models.DateTimeField(auto_now=True)  # ინახავს დროს ყოველ ჯერზე
     # ინახავს დროს მხოლოდ მაშინ როდესაც შეიქმნა
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-updated', '-created'] # - ნიშნავს ascended order, ანუ ახალი პოსტი იქნება ბოლოში, - gareshe descended order
+        # - ნიშნავს ascended order, ანუ ახალი პოსტი იქნება ბოლოში, - gareshe descended order
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         return self.name
