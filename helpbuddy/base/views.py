@@ -11,6 +11,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Room, Topic, Message
 from .forms import RoomForm
 
+# .order_by('-created')
+
 
 def loginPage(request):
 
@@ -76,8 +78,11 @@ def home(request):
 
     topics = Topic.objects.all()
     room_count = rooms.count()
+    # Recent Activity-ის წერილები (მომავალში შეიძლება გადაკეთდეს, მხოლოდ ის ვისაც ა-follow-ებ)
+    room_messages = Message.objects.all().filter(Q(room__topic__name__icontains=q))
 
-    context = {'rooms': rooms, 'topics': topics, 'room_count': room_count}
+    context = {'rooms': rooms, 'topics': topics,
+               'room_count': room_count, 'room_messages': room_messages}
     return render(request, 'base/home.html', context)
 
 # ოთახის კომენტარები
@@ -85,7 +90,7 @@ def home(request):
 
 def room(request, pk):
     room = Room.objects.get(id=pk)
-    room_messages = room.message_set.all().order_by('-created')  # type: ignore
+    room_messages = room.message_set.all()  # type: ignore
     participants = room.participants.all()
 
     if request.method == 'POST':
@@ -102,14 +107,28 @@ def room(request, pk):
     return render(request, 'base/room.html', context)
 
 
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    rooms = user.room_set.all()  # type: ignore
+    room_messages = user.message_set.all()  # type: ignore
+    topics = Topic.objects.all()  # type: ignore
+    context = {'user': user, 'rooms': rooms,
+               'room_messages': room_messages, 'topics': topics}
+    return render(request, 'base/profile.html', context)
+
 # გვაქვს დაიმპორტებული, ამის ქვეშ რაც არის ხდება სავალდებულო
+
+
 @login_required(login_url='login')
 def createRoom(request):
     form = RoomForm()
+
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
 
     context = {'form': form}
@@ -146,6 +165,7 @@ def deleteRoom(request, pk):
         room.delete()
         return redirect('home')
     return render(request, 'base/delete.html', {'obj': room})
+
 
 @login_required(login_url='login')
 def deleteMessage(request, pk):

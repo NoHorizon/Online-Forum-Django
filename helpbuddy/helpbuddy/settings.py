@@ -1,4 +1,4 @@
-#პროექტის მთავარი პარამეტრები
+# პროექტის მთავარი პარამეტრები
 
 """
 Django settings for helpbuddy project.
@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #custom
+    # custom
     # 'base' # მიებმევა ჩვენი შექმნილი app-ი მაგრამ სჯობს დაზუსტებული მისამართი ანუ (შემდეგი ზოლი)
-    'base.apps.BaseConfig', # base app-ში apps.py-ში BaseConfig კლასი.
+    'base.apps.BaseConfig',  # base app-ში apps.py-ში BaseConfig კლასი.
 ]
 
 MIDDLEWARE = [
@@ -61,8 +61,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            #custom
-            #BASE_DIR ნიშნავს მთავარ დირექტორიას, ამ შემთხვევაში მთვარი helpbuddy
+            # custom
+            # BASE_DIR ნიშნავს მთავარ დირექტორიას, ამ შემთხვევაში მთვარი helpbuddy
             BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'helpbuddy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3', # დაკავშირებულია მონაცემთა ბაზასთან
+        'NAME': BASE_DIR / 'db.sqlite3',  # დაკავშირებულია მონაცემთა ბაზასთან
     }
 }
 
@@ -125,7 +125,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/' # ! მნიშვნელოვანია
+STATIC_URL = 'static/'  # ! მნიშვნელოვანია
+
+# custom
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# STATIC_ROOT =
+
+# end of custom
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

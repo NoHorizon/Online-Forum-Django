@@ -1,0 +1,20 @@
+{% for room in rooms %}
+  <div>
+    {% if request.user == room.host %}
+      <!-- თუ იუზერისაა ეს ოთახები მაშინ გამოუჩნდეს ეს ღილაკები -->
+      <a href="{% url 'update-room' room.id %}">Edit</a>
+      <a href="{% url 'delete-room' room.id %}">Delete</a>
+    {% endif %}
+
+    {% if room.host.id %}
+      <a href="{% url 'user-profile' room.host.id %}">@{{room.host.username}}</a>
+    {% else %}
+      <span>No user profile available</span>
+    {% endif %}
+
+    <h5>{{ room.id }} - <a href="{% url 'room' room.id %}">{{room.name}}</h5></a>
+    <!-- 'room' aris urls.py-ში მისამართის სახელი, ეს სჯობს ვიდრე ფაილის მისამართი, რადგან გვერდს შეიძლება შევუცვალოთ სახელი (room_page) სამომავლოდ და აღარ მოგვიწევს ყველა ფაილში სათითაოდ დაკორექტირება-->
+    <small>{{room.topic.name}}</small>
+    <hr>
+  </div>
+{% endfor %}

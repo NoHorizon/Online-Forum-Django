@@ -9,3 +9,4 @@ class RoomForm(ModelForm):
         # models.py დან იღებს კლასი Room-ის მონაცემებს
         # შეიძლება ლისთის სახითაც მაგ: ['name', 'body' და ა.შ]
         fields = '__all__'
+        exclude = ['host', 'participants']
