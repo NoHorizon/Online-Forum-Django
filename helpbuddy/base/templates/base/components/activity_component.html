@@ -1,6 +1,6 @@
 <div class="activities">
   <div class="activities__header">
-    <h2>Recent Activities</h2>
+    <h2>ბოლო აქტივობები</h2>
   </div>
   {% for message in room_messages %}
   <div class="activities__box">
@@ -10,7 +10,10 @@
         class="roomListRoom__author"
       >
         <div class="avatar avatar--small">
-          <img src="https://randomuser.me/api/portraits/women/11.jpg" />
+          <img
+            src="https://randomuser.me/api/portraits/men/97.jpg"
+            alt="profile_image"
+          />
         </div>
         <p>
           @{{message.user}}
@@ -39,8 +42,7 @@
     </div>
     <div class="activities__boxContent">
       <p>
-        replied to post “<a href="{% url 'room' message.room.id %}"
-          >{{message.room}}</a
+        უპასუხა “<a href="{% url 'room' message.room.id %}">{{message.room}}</a
         >”
       </p>
       <div class="activities__boxRoomContent">{{message.body}}</div>

@@ -28,7 +28,7 @@
         <form class="form" action="" method="POST">
           {% csrf_token %}
           <div class="form__group">
-            <label for="room_topic">Enter a Topic</label>
+            <label for="room_topic">თემა</label>
             <input
               type="text"
               name="topic"
@@ -46,12 +46,12 @@
           </div>
 
           <div class="form__group">
-            <label for="room_name">Room Name</label>
+            <label for="room_name">ოთახის დასახელება</label>
             {{form.name}}
           </div>
 
           <div class="form__group">
-            <label for="room_description">Room Description</label>
+            <label for="room_description">ოთახის აღწერილობა</label>
             {{form.description}}
           </div>
 
@@ -74,8 +74,8 @@
           </div> -->
 
           <div class="form__action">
-            <a class="btn btn--dark" href="index.html">Cancel</a>
-            <button class="btn btn--main" type="submit">Submit</button>
+            <a class="btn btn--dark" href="index.html">გაუქმება</a>
+            <button class="btn btn--main" type="submit">დადასტურება</button>
           </div>
         </form>
       </div>
