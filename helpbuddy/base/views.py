@@ -167,7 +167,7 @@ def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
 
     if request.user != room.host:
-        return HttpResponse('You are not the owner of this room')
+        return HttpResponse('ოთახის თქვენ არ გეკუთვნით')
 
     if request.method == 'POST':
         room.delete()
@@ -209,6 +209,7 @@ def topicsPage(request):
     topics = Topic.objects.filter(name__icontains=q)
     return render(request, 'base/topics.html', {'topics': topics})
 
+
 def activityPage(request):
     room_messages = Message.objects.all()
-    return render(request, 'base/activity.html', {'room_messages':room_messages})
+    return render(request, 'base/activity.html', {'room_messages': room_messages})
